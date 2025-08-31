@@ -1,0 +1,1207 @@
+<!-- Gallery Section -->
+    <div id="gallery" class="section">
+        <div class="container-fluid px-4">
+            <div class="brutal-card p-4 mb-4">
+                <h2 class="mb-4">GALLERY & ARTWORK</h2>
+                <p class="font-weight-bold mb-4">Koleksi gambar, artwork, dan inspirasi visual</p>
+                
+                <!-- Image Upload Zone -->
+                <div class="image-upload-zone mb-4" onclick="alert('Fitur upload akan segera tersedia! Saat ini Anda bisa mengganti placeholder dengan gambar sendiri.')">
+                    <h4>📁 UPLOAD GAMBAR BARU</h4>
+                    <p class="font-weight-bold">Klik untuk menambahkan gambar anime/artwork favorit</p>
+                </div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>ANIME ART #1</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">Anime Character Art</h5>
+                            <p>Tempat untuk gambar anime yang Anda upload - style kawaii dengan detail yang indah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>ILLUSTRATION #2</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">Digital Illustration</h5>
+                            <p>Karya seni digital dengan gaya modern dan warna-warna cerah</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>ARTWORK #3</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">Original Artwork</h5>
+                            <p>Karya seni original dengan tema neo-brutalism dan estetika modern</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>DESIGN #4</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">UI Design Concept</h5>
+                            <p>Konsep desain interface dengan pendekatan brutal dan fungsional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>PHOTO #5</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">Photography</h5>
+                            <p>Fotografi dengan komposisi dan pencahayaan yang menarik</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="image-card">
+                        <div class="image-placeholder">
+                            <span>INSPIRATION #6</span>
+                        </div>
+                        <div class="gallery-overlay">
+                            <h5 class="font-weight-bold">Visual Inspiration</h5>
+                            <p>Referensi visual dan inspirasi untuk proyek-proyek kreatif</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Categories -->
+            <div class="brutal-card p-4 mt-4">
+                <h3 class="mb-3">KATEGORI GAMBAR</h3>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="category-filter active" onclick="filterGallery('all')">SEMUA</button>
+                    <button class="category-filter" onclick="filterGallery('anime')">ANIME</button>
+                    <button class="category-filter" onclick="filterGallery('illustration')">ILLUSTRATION</button>
+                    <button class="category-filter" onclick="filterGallery('design')">UI DESIGN</button>
+                    <button class="category-filter" onclick="filterGallery('photo')">PHOTOGRAPHY</button>
+                </div>
+            </div>
+        </div>
+    </div><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Pribadi - Neo Brutalism</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-yellow: #FFFF00;
+            --accent-pink: #FF10F0;
+            --black: #000000;
+            --white: #FFFFFF;
+            --dark-bg: #1a1a1a;
+            --dark-card: #2d2d2d;
+        }
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-yellow);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+
+        .brutal-card {
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0px var(--black);
+            transition: all 0.2s ease;
+        }
+
+        .dark-mode .brutal-card {
+            background: var(--dark-card);
+            border-color: var(--accent-pink);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+        }
+
+        .brutal-btn {
+            background: var(--primary-yellow);
+            border: 4px solid var(--black);
+            box-shadow: 4px 4px 0px var(--black);
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 12px 24px;
+            transition: all 0.2s ease;
+            color: var(--black);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .brutal-btn:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--black);
+        }
+
+        .brutal-btn-pink {
+            background: var(--accent-pink);
+            border-color: var(--black);
+        }
+
+        .brutal-btn-pink:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .dark-mode .brutal-btn {
+            background: var(--accent-pink);
+            border-color: var(--white);
+            box-shadow: 4px 4px 0px var(--white);
+            color: var(--black);
+        }
+
+        .dark-mode .brutal-btn:hover {
+            background: var(--white);
+            color: var(--black);
+            box-shadow: 2px 2px 0px var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 4px 4px 0px var(--accent-pink);
+        }
+
+        .dark-mode .header-title {
+            text-shadow: 4px 4px 0px var(--primary-yellow);
+        }
+
+        .article-card {
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px var(--accent-pink);
+        }
+
+        .dark-mode .article-card {
+            background: var(--dark-card);
+            border-color: var(--primary-yellow);
+            box-shadow: 8px 8px 0px var(--primary-yellow);
+        }
+
+        .dark-mode .article-card:hover {
+            box-shadow: 4px 4px 0px var(--primary-yellow);
+        }
+
+        .category-filter {
+            background: var(--accent-pink);
+            border: 3px solid var(--black);
+            color: var(--black);
+            font-weight: 700;
+            padding: 8px 16px;
+            margin: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-filter:hover,
+        .category-filter.active {
+            background: var(--black);
+            color: var(--white);
+            transform: translate(2px, 2px);
+        }
+
+        .dark-mode .category-filter {
+            border-color: var(--white);
+        }
+
+        .dark-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--accent-pink);
+            border: 3px solid var(--black);
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dark-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .dark-mode .dark-toggle {
+            background: var(--primary-yellow);
+            border-color: var(--white);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            border: 3px solid var(--black);
+            background: var(--white);
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent-pink);
+            box-shadow: 4px 4px 0px var(--accent-pink);
+        }
+
+        .dark-mode .contact-form input,
+        .dark-mode .contact-form textarea {
+            background: var(--dark-card);
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .nav-link {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--black);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            border-color: var(--black);
+            background: var(--accent-pink);
+            color: var(--black);
+        }
+
+        .dark-mode .nav-link {
+            color: var(--white);
+        }
+
+        .dark-mode .nav-link:hover,
+        .dark-mode .nav-link.active {
+            border-color: var(--white);
+            background: var(--primary-yellow);
+            color: var(--black);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .hero-section {
+            background: linear-gradient(45deg, var(--primary-yellow) 25%, var(--accent-pink) 25%, var(--accent-pink) 50%, var(--primary-yellow) 50%, var(--primary-yellow) 75%, var(--accent-pink) 75%);
+            background-size: 40px 40px;
+            animation: slide 2s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch 0.3s infinite;
+            color: var(--accent-pink);
+            z-index: -1;
+        }
+
+        .image-card {
+            background: var(--white);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+            transition: all 0.2s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-card:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px var(--accent-pink);
+        }
+
+        .dark-mode .image-card {
+            background: var(--dark-card);
+            border-color: var(--primary-yellow);
+            box-shadow: 8px 8px 0px var(--primary-yellow);
+        }
+
+        .dark-mode .image-card:hover {
+            box-shadow: 4px 4px 0px var(--primary-yellow);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, var(--primary-yellow) 25%, var(--accent-pink) 25%, var(--accent-pink) 50%, var(--primary-yellow) 50%);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(1px);
+        }
+
+        .image-placeholder span {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border: 2px solid var(--black);
+        }
+
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-placeholder {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 6px solid var(--black);
+            box-shadow: 8px 8px 0px var(--accent-pink);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, var(--primary-yellow), var(--accent-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .avatar-placeholder {
+            border-color: var(--white);
+            box-shadow: 8px 8px 0px var(--primary-yellow);
+        }
+
+        .avatar-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+
+        .avatar-placeholder span {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 15px;
+            border: 2px solid var(--black);
+            border-radius: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .image-upload-zone {
+            border: 4px dashed var(--black);
+            padding: 40px;
+            text-align: center;
+            background: rgba(255,255,255,0.5);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .image-upload-zone:hover {
+            background: rgba(255,255,255,0.8);
+            border-color: var(--accent-pink);
+        }
+
+        .dark-mode .image-upload-zone {
+            border-color: var(--white);
+            background: rgba(45,45,45,0.5);
+        }
+
+        .dark-mode .image-upload-zone:hover {
+            background: rgba(45,45,45,0.8);
+            border-color: var(--primary-yellow);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--accent-pink));
+            border: 4px solid var(--black);
+            box-shadow: 12px 12px 0px var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--black);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="50" text-anchor="middle" dominant-baseline="middle" fill="%23000">🎨</text></svg>') center/100px no-repeat;
+            opacity: 0.3;
+        }
+
+        .featured-image span {
+            position: relative;
+            z-index: 1;
+            background: rgba(255,255,255,0.9);
+            padding: 15px 30px;
+            border: 3px solid var(--black);
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-toggle" onclick="toggleDarkMode()"></div>
+
+    <!-- Navigation -->
+    <nav class="brutal-card mx-4 my-4 p-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+            <h1 class="header-title m-0 glitch" data-text="MY BLOG">MY BLOG</h1>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="#" class="nav-link active" onclick="showSection('beranda')">Beranda</a>
+                <a href="#" class="nav-link" onclick="showSection('artikel')">Artikel</a>
+                <a href="#" class="nav-link" onclick="showSection('gallery')">Gallery</a>
+                <a href="#" class="nav-link" onclick="showSection('tentang')">Tentang Saya</a>
+                <a href="#" class="nav-link" onclick="showSection('kontak')">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Beranda Section -->
+    <div id="beranda" class="section active">
+        <div class="hero-section brutal-card mx-4 my-4 p-5">
+            <div class="text-center">
+                <h2 class="display-4 font-weight-bold mb-4" style="font-weight: 900;">SELAMAT DATANG DI BLOG SAYA!</h2>
+                <p class="lead font-weight-bold" style="font-size: 1.5rem;">Tempat di mana ide-ide gila bertemu dengan desain brutal</p>
+                <a href="#" class="brutal-btn mt-3" onclick="showSection('artikel')">BACA ARTIKEL</a>
+            </div>
+        </div>
+
+        <div class="container-fluid px-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="brutal-card p-4">
+                        <h3 class="mb-3">ARTIKEL TERBARU</h3>
+                        <div class="article-preview">
+                            <div class="image-placeholder mb-3" style="height: 150px;">
+                                <span>GAMBAR ARTIKEL</span>
+                            </div>
+                            <h5>Mengapa Neo-Brutalism Adalah Masa Depan Web Design</h5>
+                            <p>Eksplorasi mendalam tentang tren desain yang mengutamakan fungsi over form...</p>
+                            <span class="badge" style="background: var(--accent-pink); color: var(--black); font-weight: 700;">DESIGN</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="brutal-card p-4">
+                        <h3 class="mb-3">STATS BLOG</h3>
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <h4 style="color: var(--accent-pink);">42</h4>
+                                <p class="font-weight-bold">ARTIKEL</p>
+                            </div>
+                            <div class="col-4">
+                                <h4 style="color: var(--accent-pink);">1.2K</h4>
+                                <p class="font-weight-bold">VIEWS</p>
+                            </div>
+                            <div class="col-4">
+                                <h4 style="color: var(--accent-pink);">365</h4>
+                                <p class="font-weight-bold">DAYS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Image Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="featured-image">
+                        <span>GAMBAR UNGGULAN - Upload gambar anime/artwork favorit Anda di sini!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artikel Section -->
+    <div id="artikel" class="section">
+        <div class="container-fluid px-4">
+            <div class="brutal-card p-4 mb-4">
+                <h2 class="mb-4">SEMUA ARTIKEL</h2>
+                
+                <!-- Category Filters -->
+                <div class="mb-4">
+                    <h5 class="mb-3">FILTER KATEGORI:</h5>
+                    <div class="d-flex flex-wrap">
+                        <button class="category-filter active" onclick="filterArticles('all')">SEMUA</button>
+                        <button class="category-filter" onclick="filterArticles('design')">DESIGN</button>
+                        <button class="category-filter" onclick="filterArticles('tech')">TECH</button>
+                        <button class="category-filter" onclick="filterArticles('lifestyle')">LIFESTYLE</button>
+                        <button class="category-filter" onclick="filterArticles('tutorial')">TUTORIAL</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4" id="articles-container">
+                <div class="col-lg-4 col-md-6 article-item" data-category="design">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>DESIGN IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--accent-pink); color: var(--black); font-weight: 700;">DESIGN</span>
+                        </div>
+                        <h4 class="mb-3">Neo-Brutalism: Revolusi Desain Web</h4>
+                        <p class="mb-3">Bagaimana tren desain brutal mengubah cara kita melihat interface modern...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">25 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 article-item" data-category="tech">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>TECH IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--primary-yellow); color: var(--black); font-weight: 700;">TECH</span>
+                        </div>
+                        <h4 class="mb-3">CSS Grid vs Flexbox di 2025</h4>
+                        <p class="mb-3">Perbandingan mendalam antara dua teknologi layout CSS terpopuler...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">22 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 article-item" data-category="lifestyle">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>LIFESTYLE IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--accent-pink); color: var(--black); font-weight: 700;">LIFESTYLE</span>
+                        </div>
+                        <h4 class="mb-3">Work-Life Balance Developer</h4>
+                        <p class="mb-3">Tips menjaga keseimbangan hidup sebagai developer di era remote work...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">20 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 article-item" data-category="tutorial">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>TUTORIAL IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--primary-yellow); color: var(--black); font-weight: 700;">TUTORIAL</span>
+                        </div>
+                        <h4 class="mb-3">Membuat Animasi CSS Brutal</h4>
+                        <p class="mb-3">Step-by-step tutorial membuat animasi dengan gaya neo-brutalism...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">18 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 article-item" data-category="design">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>DESIGN IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--accent-pink); color: var(--black); font-weight: 700;">DESIGN</span>
+                        </div>
+                        <h4 class="mb-3">Typography Brutal yang Memukau</h4>
+                        <p class="mb-3">Panduan memilih dan menggunakan font untuk desain neo-brutalism...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">15 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 article-item" data-category="tech">
+                    <div class="article-card p-4">
+                        <div class="image-placeholder mb-3" style="height: 180px;">
+                            <span>TECH IMG</span>
+                        </div>
+                        <div class="mb-3">
+                            <span class="badge" style="background: var(--primary-yellow); color: var(--black); font-weight: 700;">TECH</span>
+                        </div>
+                        <h4 class="mb-3">JavaScript Framework Wars 2025</h4>
+                        <p class="mb-3">Analisis objektif tentang framework JavaScript terpopuler tahun ini...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="font-weight-bold">12 Aug 2025</small>
+                            <a href="#" class="brutal-btn-pink" style="padding: 8px 16px; font-size: 0.8rem;">BACA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tentang Saya Section -->
+    <div id="tentang" class="section">
+        <div class="container-fluid px-4">
+            <!-- Avatar Section -->
+            <div class="brutal-card p-5 mb-4">
+                <div class="avatar-section">
+                    <div class="avatar-placeholder">
+                        <span>FOTO</span>
+                    </div>
+                    <h2 class="mb-2">NAMA SAYA</h2>
+                    <p class="font-weight-bold" style="font-size: 1.2rem; color: var(--accent-pink);">UI/UX Designer & Developer</p>
+                    <p class="font-weight-bold">📍 Semarang, Indonesia</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="brutal-card p-5">
+                        <h2 class="mb-4">TENTANG SAYA</h2>
+                        <p class="mb-4" style="font-size: 1.2rem; font-weight: 600;">Halo! Saya adalah seorang designer dan developer yang terobsesi dengan estetika brutal dan pengalaman user yang tak terlupakan.</p>
+                        
+                        <div class="mb-4">
+                            <h4 class="mb-3">SKILL SET:</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge" style="background: var(--accent-pink); color: var(--black); padding: 8px 12px; font-weight: 700;">HTML/CSS</span>
+                                <span class="badge" style="background: var(--primary-yellow); color: var(--black); padding: 8px 12px; font-weight: 700;">JAVASCRIPT</span>
+                                <span class="badge" style="background: var(--accent-pink); color: var(--black); padding: 8px 12px; font-weight: 700;">REACT</span>
+                                <span class="badge" style="background: var(--primary-yellow); color: var(--black); padding: 8px 12px; font-weight: 700;">FIGMA</span>
+                                <span class="badge" style="background: var(--accent-pink); color: var(--black); padding: 8px 12px; font-weight: 700;">UI/UX</span>
+                                <span class="badge" style="background: var(--primary-yellow); color: var(--black); padding: 8px 12px; font-weight: 700;">ANIME ART</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="mb-3">FILOSOFI DESIGN:</h4>
+                            <blockquote style="border-left: 8px solid var(--accent-pink); padding-left: 20px; font-style: italic; font-weight: 600;">
+                                "Desain yang baik bukan hanya tentang keindahan, tapi tentang kejujuran fungsi dan keberanian dalam mengekspresikan identitas."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="brutal-card p-5">
+                        <h3 class="mb-4">PERJALANAN SAYA</h3>
+                        <div class="timeline">
+                            <div class="mb-4 p-3" style="border-left: 4px solid var(--accent-pink);">
+                                <h5>2025 - SEKARANG</h5>
+                                <p class="font-weight-bold">Senior UI/UX Designer</p>
+                                <p>Memimpin tim design untuk startup teknologi dengan fokus pada user experience yang revolutionary.</p>
+                            </div>
+                            <div class="mb-4 p-3" style="border-left: 4px solid var(--primary-yellow);">
+                                <h5>2023 - 2024</h5>
+                                <p class="font-weight-bold">Freelance Designer</p>
+                                <p>Mengerjakan berbagai proyek dari branding hingga web development untuk klien internasional.</p>
+                            </div>
+                            <div class="mb-4 p-3" style="border-left: 4px solid var(--accent-pink);">
+                                <h5>2020 - 2023</h5>
+                                <p class="font-weight-bold">Junior Developer</p>
+                                <p>Memulai karir di dunia tech dengan fokus pada front-end development dan design system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Interests -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="brutal-card p-5">
+                        <h3 class="mb-4">HOBI & MINAT</h3>
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="image-placeholder mb-3" style="height: 200px;">
+                                    <span>ANIME</span>
+                                </div>
+                                <h5>ANIME & MANGA</h5>
+                                <p class="font-weight-bold">Penggemar anime dan manga, suka dengan art style yang unik dan storytelling yang menarik.</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="image-placeholder mb-3" style="height: 200px;">
+                                    <span>CODING</span>
+                                </div>
+                                <h5>CODING</h5>
+                                <p class="font-weight-bold">Passionate coder yang selalu explore teknologi baru dan best practices.</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="image-placeholder mb-3" style="height: 200px;">
+                                    <span>DESIGN</span>
+                                </div>
+                                <h5>VISUAL DESIGN</h5>
+                                <p class="font-weight-bold">Mencintai eksperimen dengan warna, typography, dan layout yang bold.</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="image-placeholder mb-3" style="height: 200px;">
+                                    <span>MUSIC</span>
+                                </div>
+                                <h5>MUSIC</h5>
+                                <p class="font-weight-bold">Lo-fi hip hop dan J-pop adalah soundtrack kehidupan coding saya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kontak Section -->
+    <div id="kontak" class="section">
+        <div class="container-fluid px-4">
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="brutal-card p-5">
+                        <h2 class="mb-4">HUBUNGI SAYA</h2>
+                        <p class="mb-4 font-weight-bold">Punya proyek menarik? Mari berkolaborasi!</p>
+                        
+                        <form class="contact-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">NAMA</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label font-weight-bold">EMAIL</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label font-weight-bold">SUBJEK</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label font-weight-bold">PESAN</label>
+                                    <textarea class="form-control" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="brutal-btn">KIRIM PESAN</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="brutal-card p-4 mb-4">
+                        <h3 class="mb-3">KONTAK INFO</h3>
+                        <div class="mb-3">
+                            <h5>EMAIL:</h5>
+                            <p class="font-weight-bold">hello@myblog.com</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5>LOKASI:</h5>
+                            <p class="font-weight-bold">Semarang, Indonesia</p>
+                        </div>
+                        <div class="mb-3">
+                            <h5>SOCIAL MEDIA:</h5>
+                            <div class="d-flex gap-2">
+                                <a href="#" class="brutal-btn-pink" style="padding: 8px 12px; font-size: 0.8rem;">TWITTER</a>
+                                <a href="#" class="brutal-btn-pink" style="padding: 8px 12px; font-size: 0.8rem;">DRIBBBLE</a>
+                                <a href="#" class="brutal-btn-pink" style="padding: 8px 12px; font-size: 0.8rem;">GITHUB</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="brutal-card p-4">
+                        <h4 class="mb-3">QUICK LINKS</h4>
+                        <div class="d-grid gap-2">
+                            <a href="#" class="brutal-btn">PORTFOLIO</a>
+                            <a href="#" class="brutal-btn">RESUME</a>
+                            <a href="#" class="brutal-btn">NEWSLETTER</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="brutal-card mx-4 my-4 p-4">
+        <div class="text-center">
+            <p class="font-weight-bold mb-0">© 2025 MY BLOG - DIBUAT DENGAN ❤️ DAN KOPI</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark mode functionality
+        let isDarkMode = false;
+
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Navigation functionality
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            document.getElementById(sectionName).classList.add('active');
+
+            // Update nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Article filtering
+        function filterArticles(category) {
+            const articles = document.querySelectorAll('.article-item');
+            const filters = document.querySelectorAll('#artikel .category-filter');
+
+            // Update filter buttons
+            filters.forEach(filter => {
+                filter.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter articles
+            articles.forEach(article => {
+                const articleCategory = article.getAttribute('data-category');
+                if (category === 'all' || articleCategory === category) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        // Gallery filtering
+        function filterGallery(category) {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const filters = document.querySelectorAll('#gallery .category-filter');
+
+            // Update filter buttons
+            filters.forEach(filter => {
+                filter.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // This would filter actual images when implemented
+            console.log(`Filtering gallery by: ${category}`);
+            
+            // For now, show all items (placeholder functionality)
+            galleryItems.forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+
+        // Add image preview functionality
+        function previewImage(input, targetId) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const target = document.getElementById(targetId);
+                    if (target) {
+                        target.style.backgroundImage = `url(${e.target.result})`;
+                        target.style.backgroundSize = 'cover';
+                        target.style.backgroundPosition = 'center';
+                        target.innerHTML = '';
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Add click-to-enlarge functionality for gallery images
+        function enlargeImage(element) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.9);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            `;
+            
+            const enlargedImg = element.cloneNode(true);
+            enlargedImg.style.cssText = `
+                max-width: 90vw;
+                max-height: 90vh;
+                border: 6px solid var(--accent-pink);
+                box-shadow: 16px 16px 0px var(--primary-yellow);
+            `;
+            
+            overlay.appendChild(enlargedImg);
+            document.body.appendChild(overlay);
+            
+            overlay.onclick = () => document.body.removeChild(overlay);
+        }
+
+        // Contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Pesan berhasil dikirim! Terima kasih sudah menghubungi saya.');
+                    this.reset();
+                });
+            }
+
+            // Add hover effects to article cards
+            const articleCards = document.querySelectorAll('.article-card');
+            articleCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translate(4px, 4px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0)';
+                });
+            });
+
+            // Add click animation to brutal buttons
+            const brutalBtns = document.querySelectorAll('.brutal-btn, .brutal-btn-pink');
+            brutalBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 100);
+                });
+            });
+        });
+
+        // Add some interactive animations
+        function addRandomGlitch() {
+            const title = document.querySelector('.header-title');
+            title.style.animation = 'glitch 0.3s ease-in-out';
+            setTimeout(() => {
+                title.style.animation = '';
+            }, 300);
+        }
+
+        // Random glitch effect every 10 seconds
+        setInterval(addRandomGlitch, 10000);
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', function() {
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                const scrolled = window.pageYOffset;
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add typing effect for hero text
+        function typeWriter(element, text, speed = 100) {
+            element.innerHTML = '';
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect on page load
+        setTimeout(() => {
+            const heroText = document.querySelector('.hero-section p');
+            if (heroText) {
+                const originalText = heroText.textContent;
+                typeWriter(heroText, originalText, 50);
+            }
+        }, 1000);
+
+        // Add floating animation to cards
+        function addFloatingAnimation() {
+            const cards = document.querySelectorAll('.brutal-card');
+            cards.forEach((card, index) => {
+                card.style.animation = `float 6s ease-in-out infinite ${index * 0.5}s`;
+            });
+        }
+
+        // CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .brutal-card:hover {
+                animation-play-state: paused;
+            }
+            
+            .shake {
+                animation: shake 0.5s ease-in-out;
+            }
+            
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            
+            .pulse-border {
+                animation: pulse-border 2s infinite;
+            }
+            
+            @keyframes pulse-border {
+                0% { border-color: var(--black); }
+                50% { border-color: var(--accent-pink); }
+                100% { border-color: var(--black); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add shake effect to buttons on click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('brutal-btn') || e.target.classList.contains('brutal-btn-pink')) {
+                e.target.classList.add('shake');
+                setTimeout(() => {
+                    e.target.classList.remove('shake');
+                }, 500);
+            }
+        });
+
+        // Add pulse effect to form inputs on focus
+        document.addEventListener('focus', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                e.target.classList.add('pulse-border');
+            }
+        }, true);
+
+        document.addEventListener('blur', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                e.target.classList.remove('pulse-border');
+            }
+        }, true);
+
+        // Initialize floating animation after page load
+        setTimeout(addFloatingAnimation, 2000);
+    </script>
+</body>
+</html>
